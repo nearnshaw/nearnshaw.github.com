@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.dude
+{background:#009900;
+width:170px;height:100px;padding:30px; margin:30px ;float:left;text-align:center; border-radius:15px;
+}
+</style>
+
+<script>
+function mDown(obj)
+{
+if (obj.id == "dude3")
+{obj.style.backgroundColor="#1ec5e5";
+obj.innerHTML=":)"}
+else {obj.style.backgroundColor="#FF0000";
+obj.innerHTML="MUAHAHA!!"}
+;
+x=document.getElementsByClassName("dude");
+for (var i = 0; i < x.length; i++)
+{
+if (x[i].id != obj.id)
+{x[i].innerHTML = "You FOOL!  You have doomed us all!";}
+}
+}
+
+function mUp(obj)
+{
+
+
+if (obj.id == "dude3")
+{
+obj.style.backgroundColor="#09AFCF";
+obj.innerHTML="That was close!"
+alert("you got it right!  Yay!")}
+else
+{
+obj.style.backgroundColor="#D94A38";
+obj.innerHTML="Thank You";
+document.body.style.background = null;
+document.body.style.background = "url('img/hell.jpg') #FF0000 no-repeat";
+//$(#body).attr(background-image,"img/hell.jpg");
+alert("You have killed us all!!!   I hope you're happy...")
+document.body.style.background = null;
+}
+
+x=document.getElementsByClassName("dude");
+for (var i = 0; i< x.length;i++)
+{
+if (x[i].id != obj.id)
+{x[i].innerHTML = "Click Me!";
+x[i].style.backgroundColor="#009900";}
+}
+
+}
+
+function mOver(obj)
+{
+
+
+x=document.getElementsByClassName("dude");
+
+for (var i = 0; i< x.length;i++)
+{
+if (x[i].id != obj.id)
+{x[i].innerHTML = "Don't! It's a trap!";
+x[i].style.backgroundColor="#DD0000"}
+};
+setDelay (function(){theyLie(obj)},2000);
+;}
+
+function theyLie(obj){
+obj.innerHTML = "They Lie!";
+}
+
+function mOut(obj)
+{
+
+x=document.getElementsByClassName("dude");
+for (var i = 0; i< x.length;i++)
+{
+x[i].innerHTML = "Click Me!";
+x[i].style.backgroundColor="#009900";
+}
+
+
+}
+
+
+</script>
+
+</head>
+
+<body  style="background:null">
+
+<div style="width:800px">
+
+<b>
+
+<div class="dude" id=dude1 onmousedown="mDown(this)" onmouseup="mUp(this)" onmouseover="mOver(this)" onmouseout="mOut(this)">Click Me!</div>
+
+<span>
+
+<div class="dude"  id=dude2 onmousedown="mDown(this)" onmouseup="mUp(this)" onmouseover="mOver(this)" onmouseout="mOut(this)" >Click Me!</div>
+
+<br>
+
+<div class="dude"  id=dude3 onmousedown="mDown(this)" onmouseup="mUp(this)" onmouseover="mOver(this)" onmouseout="mOut(this)">Click Me!</div>
+
+<span>
+
+<div class="dude"  id=dude4 onmousedown="mDown(this)" onmouseup="mUp(this)" onmouseover="mOver(this)" onmouseout="mOut(this)" >Click Me!</div>
+</b>
+
+</div>
+
+
+
+</body>
+</html> 
+
+
