@@ -26,6 +26,8 @@
 			<br>
 			<br>
 
+			<h3>Complex Gestures</h3>
+			<br>
 		<h5>
 		The gestures in this implementation are built to work within the confines of a "pad":  
 		A second screen that can be held over the table
@@ -128,9 +130,9 @@ The degrees of freedom of the pad are a very interesting way to interact with mu
 <br> 
 <br> 
 On the “Harmonics layering” widget we can draw the waveshapes for the sound generating engine.  Depending on the height at which we hold the pad we will be setting the waveshape for either the main voice or for one of the 8 harmonic voices. These can all be producing different wave-shapes, eg: sine in one and saw in the others. 
-<br> 
+<br><br> 
 <img height="165" width="250" src="img/gestures/sine_wave.png">
-<br> 
+<br><br> 
 Again, on the site of the pad a metro-style station map will indicate the relative position of the pad.  Once again, drawing these curves comfortably interferes with the orientation of the pad so we chose to set this in edit-mode.
 Regardless of the widget, two gestures will be eligible at all times: equalizer and envelope filter.  If we swipe any shape from right to left of the pad, this will be interpreted as an equalization of the instrument sound.  If we swipe any shape from left to right, as long as the x position of our cursor is near 0 both at the start and end of the curve it will be interpreted as an envelope filter.  
 <br> 
