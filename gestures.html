@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+	</head>
+		
+	<body>
+		<div style="padding:15px">
+		<div class="hero">	
+			<h1>
+			Conceptual design of a 3D Music Generating App	
+				
+			</h1>
+			<br>
+			<br>
+		<div>
+			<h4>
+				Meant to work on a Microsoft SecondLight
+			</h4>
+			<a href="" target="_blank">
+				<img height="165" width="250" src="img/secondlight.jpg">
+			</a>
+			<br>
+			<br>
+
+		<h5>
+		The gestures in this implementation are built to work within the confines of a "pad":  
+		A second screen that can be held over the table
+		<br>
+		<br>
+		Three Different kinds of one-fingered complex gestures can be performed in the same space, each adressing a distinct musical property
+		<br>
+		Although these curves represent entirely different things, their shapes may sometimes overlapp. I wanted to be able to freely draw all 3 in one single screen with no mode-selection or other constraints. Segregating these was an important design challenge
+		</h5>
+
+		
+		
+		<h5>
+		1.Wave Forms
+		</h5>
+		
+		<img height="165" width="250" src="img/gestures/saw_wave.png">
+		<img height="165" width="250" src="img/gestures/sine_wave.png">
+		<img height="165" width="250" src="img/gestures/triangle_wave.png">
+		
+		
+		<br>
+		
+Any swipes that begin near a mid-height of the pad, move to the right and that match any given wave-form will be identified as such.
+
+		<br>
+		<br>
+		
+		<h5>
+		2.Envelope Filter
+		</h5>
+		<img height="165" width="250" src="img/gestures/envelope.png">
+		<br>
+If a swipe begins and ends close to the low end of the pad and moves to the right it will be identified as an envelope filter, regardless of shape... all possible meaningful envelope shapes can fit these constraints.  
+Thanks to these considerations, envelopes and wave-forms can be drawn in the same space and direction but they can be accurately differentiated.
+
+		<h5>
+		3.Equalizer
+		</h5>
+		<img height="165" width="250" src="img/gestures/equalizer.png">
+		<br>
+
+
+Any swipes that move from right to left will be identified as an equalizer filter.  Equalizer curves can take all sorts of shapes, some closely resembling those of waveforms or envelopes.  
+<br>
+We are culturally predisposed to identify left-to-right movement with the passage of time (probably due to the direction we read in).  Since in an Envelope and a Wave-form graph the X-axis represents time, drawing these shapes left-to-right would feel odd.
+<br>
+An equalizer filter, on the other hand, is not time based, the X-axis represents pitch rather than time... therefore right-to-left movement doesn't seem unnatural.
+
+			
+		</div>
+		</body>
+
+</html>
