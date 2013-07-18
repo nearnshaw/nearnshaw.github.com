@@ -1,0 +1,516 @@
+	<!DOCTYPE html>
+<html dir="ltr" lang="en-US"> 
+<head>
+
+	 <title>Mouse Index</title>
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+	    <meta name="viewport" content="width-device-width initial-scale=1-0">
+
+	    <script src="jquery/jquery.js"></script>
+	    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+	    <script src="jquery/jquery-ui-1.10.2.custom.js"></script>
+		<script src="bootstrap/js/bootstrap.js"></script>
+		<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+		<script src="mindex.js"></script>
+
+
+		<style>
+
+
+			#ann
+			{
+				background-color:#CCCCCC;
+				width:150px;
+				padding:7px;
+
+			}
+
+			#ann i
+			{
+				color:blue;
+			}
+
+			#you
+			{
+				
+
+			}
+
+			#bigcontainer
+			{
+				margin-top:90px;		
+			}
+			#tree
+			{
+				position:fixed;
+			}
+			#substance
+			{
+				margin-left:25%;
+			}
+			.span4, .span10
+			{
+
+			}
+
+			#box2
+			{
+				background-color: #EFEFB0;
+				width:100px;
+				height:40px;
+				padding:5px;
+				
+
+			}
+
+
+
+			.navbar-inner {
+			  background-color: #000; /* background color will be black for all browsers */
+			  background-image: none;
+			  background-repeat: no-repeat;
+			  filter: none;
+			  max-height: 110px;
+			}
+
+			.logo
+			{max-height: 70px}
+
+			links .li
+			{
+				text-color:#FFFFFF;
+			}
+
+
+			#state ul
+				{
+				font-family: Arialbd, Arial, Helvetica, sans-serif;
+				list-style-type:none;
+				margin:0;
+				padding:0;
+				opacity:0;
+				}
+
+				#state a
+				{
+				color: #808080;
+				text-decoration:none;
+				font-style: ;
+				font-size: 12px;
+				display: block;
+				padding: 2px 9px 7px 4px;
+				width: 100%;
+				background-color: #fff;
+				border-top: 4px solid #808080;
+				cursor:pointer;
+				}
+
+		</style>
+
+
+		<script>
+
+			function show()
+			{
+				alert("X pos: " + posxlist + ", Y pos: " + posylist);
+
+			}	
+
+
+
+			
+			$(document).ready(function(){
+
+				$("#getHelp").click(function(){
+					if (state=="frantic")
+					{
+					
+						window.location.href ="http://ramayogainstitute.com/";
+					}
+				})
+
+				$("#states li").click(function(){
+
+					state = (this).children().html;
+					adjust();
+				})
+
+			
+
+			});
+
+		function start(){
+			
+			$("#ann").fadeTo(100,0);
+	
+			//$("you").css("opacity","1");
+			setInterval(function(){adjust();},5000);
+			
+			}
+
+			function adjust()
+			{
+				$("#box2").html(state);
+				$("#box1").html(mindex);
+				if (state=="frantic")
+				{
+				
+					$(".shallow").fadeTo(200,1);
+					$(".mid").fadeTo(200,0);
+					$(".deep").fadeTo(200,0);
+
+					$(".mid").children().fadeTo(200,0);
+					$(".deep").children().fadeTo(200,0);
+				}
+				else if (state=="busy")
+				{
+					$(".shallow").fadeTo(200,1);
+					$(".mid").fadeTo(200,0.5);
+					$(".deep").fadeTo(200,0);
+
+					$(".mid").children().fadeTo(200,0.5);
+					$(".deep").children().fadeTo(200,0);
+				}
+				else if (state=="chilled")
+				{
+					$(".shallow").fadeTo(200,1);
+					$(".mid").fadeTo(200,1);
+					$(".deep").fadeTo(200,0.1);
+
+					$(".mid").children().fadeTo(200,1);
+					$(".deep").children().fadeTo(200,0.1);
+				}
+				else if (state=="focused")
+				{
+					$(".shallow").fadeTo(200,1);
+					$(".mid").fadeTo(200,1);
+					$(".deep").fadeTo(200,0.5);
+
+					$(".mid").children().fadeTo(200,0.5);
+					$(".deep").children().fadeTo(200,1);
+				}
+				else if (state=="zen")
+				{
+					$(".shallow").fadeTo(200,1);
+					$(".mid").fadeTo(200,1);
+					$(".deep").fadeTo(200,1);
+
+					$(".mid").children().fadeTo(200,1);
+					$(".deep").children().fadeTo(200,1);
+				}
+			
+
+			}
+
+		</script>
+
+
+
+
+</head>
+<body>
+
+	
+	<div id="topbar" class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+        	<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse" style="margin-right:25px;">
+        		<span class="icon-th-list"></span>
+        	</a>
+        	<a href="#homepage" class="brand"> <img src="img/logo.png" id="logo"></a>
+        	<div class="nav-collapse collapse">
+	          <ul class="nav pull-right" id="links">		  	
+	            <li><a href="#" class="active" >Documentation</a></li>
+	            <li><a href="#" >Download</a></li>
+	            <li><a id="getHelp" href="#" >Get Help</a></li>
+	            <li><a href="#" >Extensions</a></li>
+	            <li><a href="#">Contribute</a></li>
+	            <li><a href="#">Products</a></li>
+	            <li><a href="#" >Services</a></li>
+	            <li><a href="#" >Company</a></li>
+	          </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="bigcontainer" class="containter">
+		<div class="span4" id="tree">
+
+		<div id="ann">
+				<h5> Try Mule's new awsome <br> <i>Beta</i> feature!</h5>
+				
+				
+				<br>
+				Adjust the depth of the content
+				<br> to your level of attention!
+				<br>
+				<br>
+
+				<button onClick = "start()">Go!</button>
+		</div>
+		<div id="you">
+				<br>	
+					<br>	
+				Your state right now:
+				<br>
+				<br>
+				<div id="box2">
+					state
+				</div>
+		</div>
+			
+
+			
+
+		
+			
+		</div>
+	</div>
+	<div id="substance" class="span10">
+
+			<span class="shallow">
+			<h1>Intermediate Studio Tutorial</h1>
+			</span>
+			<br>
+			<span class="mid">
+			The Basic Studio Tutorial demonstrated how to build a simple spell checker application.
+			<br>
+			<br>
+			This intermediate tutorial demonstrates how to use the Studio drag-and-drop interface to build a more sophisticated Ajax spell checker application that incorporates the following:
+			<br>
+			</span>
+			<ul class="mid">
+				<br>
+				<li>the Google Spell Checker Web service</li>
+				<li>an HTML page</li>
+				<li>a sequence of pre-packaged Mule building blocks.</li>
+			</ul>
+			<br>
+
+			<span class="deep">This tutorial covers the following tasks:</span>
+			<br>
+			<br>
+			<ul class="mid">
+				<li>Creating a flow that features an Ajax endpoint and an Ajax connector</li>
+				<br>
+				<li>Translating data from a web page into the Mule message processing flow</li>
+				<br>
+				<li>Using XSL and Mule Transformers to pre-process user input into an XML format that the Google API can understand</li>
+				<br>
+				<li>Creating a connection to the Google Spell Checker API so it can process Web page input</li>
+				<br>
+				<li>Returning XML data to the originating web page via the Ajax transport channel</li>
+				<br>
+				<li>Implementing a Jetty HTTP server within the flow</li>
+			</ul>
+			<br>
+			<br>
+			<span class="shallow">
+			This tutorial requires approximately 30 minutes to complete. </span><span class="mid"> If you prefer a more guided approach to this tutorial, consider signing up for free Mule ESB Training, which uses this tutorial to demonstrate how to use Mule Studio.
+			</span>
+			<br>
+			<br>
+			<span class="shallow"><h2>Create a Studio Project</h2>
+				<br>
+				The Ajax Spell Checker flow contains five Mule components plus a connector.
+
+			</span>
+			<br>
+			<br>
+			<span class="shallow">
+			<h3>Launch Studio</h3>
+			</span>
+			<br>
+
+			<span class="deep">
+				If you have already launched Studio as part of the installation process, and it is now running, skip the rest of this section and proceed directly to: Creating a New Project.
+				<br>
+				
+				1.Navigate to the directory on your local drive in which youru installed Studio.
+				<br>
+				<br>
+				2.Double-click the executable file to launch Studio.
+				<ul class="deep">
+					<br>
+					<li>MuleStudio.exe in Windows</li>
+				<li>MuleStudio.app in Mac OS</li>
+				<li>MuleStudio in Linux</li></ul><
+				 <br>
+				 <br>
+				3.</span><span class="mid"> When Studio presents the Workspace Launcher dialog, click OK to accept the default workspace.
+				<br>
+				<br>
+				<img src="img/launch1.png">
+				<br></span>
+				<span class="deep">
+				4.If this is the first time you have launched Studio, you may see a Welcome screen as per below. Click Go to Mule Studio to dismiss the screen.
+				<br>
+				<br>
+				<img src="img/launch2.png">
+				<br>
+				<br>
+				
+				
+				</span>
+
+			<br>
+			<span class="shallow">
+			<h3>Create a new Studio Project</h3>
+			<br>
+			<br>
+			</span>
+			<span class="deep">
+				<br>
+				<br>
+				
+			1.From the Studio application menu, click File > New > Mule Project.
+			<br>
+			<br>
+			2.Studio opens the New Mule Project wizard. Fill in the Name field with the value Spell Checker.
+			<br>
+			<br>
+			3.Click anywhere in the Description text box, then type comments pertaining to the project, if you wish.
+			<br>
+			<br>
+			4.Note that Studio populates the Server Runtime field with the server which comes bundled with Studio.
+			<br>
+			<br>
+			</span>
+			<span class="mid">
+			<img src="img/new1.png">
+			<br>
+			<br>
+			</span>
+			<span class="deep">
+			5.Click Next to proceed.
+			<br>
+			<br>
+			6.Studio prompts you to create a new flow in your new project. It auto-fills the flow Name field and flow File Name field using the name of the Mule project you entered. Adjust the field values and add a description of the flow if you wish, then click Finish.
+			<br>
+			<br>
+			6.In the Package Explorer, Spell Checker.mflow appears under the flows folder and mule-project.xml appears under the src folder. The .mflow file stores flow information for the visual editor.
+			<br>
+			<br>
+			<img src="img/new2.png">
+			<br>
+			<br>
+			</span>
+			
+			<span class="shallow">
+			<h2>Add Components to the Flow</h2>
+			</span>
+			<br>
+			<br>
+			<span class="deep">If the Ajax Spell Checker flow you just created is not already open, double-click ajax_flow.mflow, which resides under the flows node in the Package Explorer pane.
+			</span>
+			<br>
+			<br>
+			<span class="shallow">
+
+			Drag the following components onto the Canvas, sequencing them as illustrated in the diagram below. These components are found in the Endpoint, Transformer, and Component categories in the Palette.
+			<br>
+			<ol>
+			<li>Ajax Endpoint</li>
+			<li>Object-to-XML Transformer</li>
+			<li>XSLT Transformer</li>
+			<li>HTTP Endpoint</li>
+			<li>Echo Component</li>
+			<ol>
+<br><br>
+				<img src="img/flow1.png">
+				<br><br>
+
+			<h2>Add and Configure a Connector</h2>
+			
+
+
+			<br>
+			Next, add and configure the Ajax connector, which is a Global Element (i.e., template) that provides server connection information to the Ajax endpoint:
+			</span>
+			<br>
+			<span class="mid">
+			1. Click the Global Elements tab at the bottom of the canvas to open the Global Elements view. 
+			<br>
+			<br>
+			<img src="img/connector1.png">
+			<br>
+			<br>
+			2. Click the Create button to open the Choose Global Type pane.
+			<br></span>
+			<span class="deep">
+			3. Click the arrow to the left of Connectors to expand that node.
+			<br>
+			4. Select Ajax, then click OK.
+			<br>
+			<ul>
+			<li> Type AjaxConnector in the Name field.</li>
+			<li>Type http://127.0.0.1:8090/Ajax in the Server URL field.</li>
+			<li>Type src/main/app/docroot in the Resource Base field. </li>
+			</ul>
+			<br><br>
+			</span><span class="shallow">
+			<img src="img/connector2.png">
+			</span>
+			<br><br>
+			<span class="deep">
+			5. Click OK to close the pane.
+			<br><br>
+			</span>
+			<span class="mid">
+			6. The Global Elements view now lists an Ajax connector.
+			<br>
+			</span>
+			<span class="shallow">
+			<h2>Configure the Building Blocks</h2>
+			</span>
+			<br>
+			<br>
+			<span class="mid">Now the Ajax Connector has been created, configure the resources needed by the Ajax endpoint to reference the Ajax Connector.</span>
+			<br>
+			<br>
+			<span class="shallow">
+			<h3>Configure the Ajax Endpoint</h3>
+			</span>
+			<br>
+			<br>
+<span class="mid">
+The Ajax endpoint serves as the Message Source (i.e., inbound endpoint) for the flow. Configure it by completing the following steps:
+	</span>
+<br>
+
+<span class="deep">
+1. Click the Message Flow tab to display your application flow on the canvas.
+<br><br>
+2. </span><span class="mid">Double-click the Ajax component to open its Properties panel.</span><span class="deep">
+<br><br>
+3. For Display Name on the General tab, enter Ajax Channel.
+<br><br>
+4. For Channel, enter /services/echo. This is the path used for communication with the web page. 
+<br>
+<br>
+</span><span class="shallow">
+<img src="img/ajax1.png">
+</span><span class="deep">
+<br><br>
+5. </span><span class="mid">Click the References tab and click the down arrow to the right of the Connector Ref field. Select AjaxConnector from the drop-down list. This represents the Ajax connector created earlier in the Global Elements view. 
+<br><br></span><span class="shallow">
+<img src="img/ajax2.png">
+<br><br>
+</span><span class="deep">
+6. Click the Documentation tab, enter a meaningful description for the connector in the Description field, then click OK to close the Endpoint Properties pane.
+</span>
+
+
+
+			<span class="shallow"></span>
+			<span class="mid"></span>
+			<span class="deep"></span>
+	</div>
+
+
+
+
+</body>
+</html>
