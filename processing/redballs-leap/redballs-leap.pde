@@ -1,31 +1,4 @@
-<!doctype html>
-<html lang="en">
 
-	<head>
-		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-		<script src="processing/processing.js"></script>
-	</head>
-		
-	<body>
-		<canvas id="mycanvas" style="border:1px black solid"></canvas>
-		<br>
-				
-		<div class="span4">	
-			<h3>
-			<ul>
-			<li>Avoid the Red balls</li> 
-			<li>Avoid black holes</li>
-			<li>Push the yellow balls into the holes </li>
-			<li>Look for green ones!</li>
-			</h3>
-			</ul>
-		<div>
-		
-		<div class="hero">
-	<h2><a href="redballs-leap.html"> Have a Leap Motion Controller? Try out the Leap-enabled version! </a></h2>
-		</div>
-	 
-	<script type="text/processing" data-processing-target="mycanvas">
 							int life = 50;
 							int prize = 0;
 							int flee= 0;
@@ -38,6 +11,22 @@
 							target[] objetivo = new target[3];
 							int gameover = 0;
 							int youwin = 0;
+							//float leapX =200;
+							//float leapY = 200;
+							boolean leap_enabled = false;
+
+
+
+													// interface JavaScript {
+												 //    void showXYCoordinates(int x, int y);
+												 //  }
+
+												 //  void bindJavascript(JavaScript js) {
+												 //    javascript = js;
+												 //  }
+
+												 //  JavaScript javascript;
+
 
 							void setup()
 							{
@@ -63,6 +52,9 @@
 							{
 							  fill(255,30);
 							  rect(0,0, width, height);
+
+							  //leapX = leapPosition[0];
+							  //leapY =leapPosition[1];
 							  
 							  if (gameover == 0 & youwin == 0)
 							  {
@@ -134,7 +126,7 @@
 							 stroke(0);
 							 fill(230,230,255);
 							 noStroke();
-							ellipse(mouseX,mouseY,10,10);
+							ellipse(leapvars.leapX,leapvars.leapY,10,10);
 							}
 								
 
@@ -236,7 +228,7 @@
 							}
 							void killyou()
 							{
-							if (abs(mouseX - lx)<10 && abs(mouseY - ly)<10)
+							if (abs(leapvars.leapX - lx)<10 && abs(leapvars.leapY - ly)<10)
 							{
 							  background(255,0,0);
 							  life-=5;
@@ -251,7 +243,7 @@
 							PVector location;
 							PVector speed;
 							PVector acceleration;
-							PVector mouse;
+							PVector leap;
 							PVector dir;
 							float speedmax = 5;
 							hole[] holes;
@@ -275,8 +267,8 @@
 
 							void move()
 							{
-							  mouse = new PVector (mouseX,mouseY);
-							 PVector dir = PVector.sub(mouse, location);
+							  leap = new PVector (leapvars.leapX,leapvars.leapY);
+							 PVector dir = PVector.sub(leap, location);
 							 dir.mult(0.0015);
 							 acceleration = dir;
 							 if ((mousePressed)&& flee ==1 && power > 0)  {acceleration.mult(-1); power-=1;}
@@ -289,14 +281,15 @@
 
 							void bounce()
 							{
-							  
-							if (location.x < 0){speed.mult(-1); acceleration.mult(-1);}
-							else if (location.x>width) {speed.mult(-1);acceleration.mult(-1);}
+															  
+								if (location.x < 0){speed.x*=(-1); acceleration.x*=(-1);}
+								else if (location.x>width) {speed.x*=(-1);acceleration.x*=(-1);}
 
-							if (location.y < 0){speed.mult(-1);acceleration.mult(-1);}
-							else if (location.y>height) {speed.mult(-1);acceleration.mult(-1);}
+								if (location.y < 0){speed.y*=(-1);acceleration.y*=(-1);}
+								else if (location.y>height) {speed.y*=(-1);acceleration.y*=(-1);}
 
-							for (int i = ID+1;i<others.length;i++)
+
+							for (int i = 0;i<others.length;i++)
 							{ 
 								  float dx = others[i].location.x - location.x;
 								  float dy = others[i].location.y - location.y;
@@ -313,7 +306,7 @@
 							{
 							  for (int n=0; n < holes.length; n++)
 							  {
-							if (abs(location.x-holes[n].lx)<5 && abs(location.y-holes[n].ly)<5)
+							if (abs(location.x-holes[n].lx)<6 && abs(location.y-holes[n].ly)<6)
 							{
 							  acceleration = new PVector (0,0);
 							  location.mult(-3);
@@ -322,7 +315,7 @@
 							}
 							void killyou()
 							{
-							if (abs(mouseX - int(location.x))< 5 && abs(mouseY - int(location.y))<5)
+							if (abs(leapvars.leapX - int(location.x))< 8 && abs(leapvars.leapY - int(location.y))<8)
 							{
 							  background(255,0,0);
 							  life-=1;
@@ -356,7 +349,7 @@
 								 }
 							  void shoo()
 							  {
-							  if(abs(mouseX - sx)<5 && abs(mouseY - sy)<5)
+							  if(abs(leapvars.leapX - sx)<5 && abs(leapvars.leapY - sy)<5)
 							  {  flee = 1; }
 							   }
 							}
@@ -387,15 +380,15 @@
 							}
 							  void move()
 							{
-							  if(mousePressed && abs(mouseX -location.x)<7 && abs(mouseY - location.y)<7)
+							  if(mousePressed && abs(leapvars.leapX -location.x)<7 && abs(leapvars.leapY - location.y)<7)
 							  {
-							  PVector[] mouse = new PVector[3] ;
-							  if(mouse[0] == null){mouse[0]= location;}
-							  mouse[2] = mouse[1];
-							  mouse[1] = new PVector(mouseX,mouseY);
+							  PVector[] leap = new PVector[3] ;
+							  if(leap[0] == null){leap[0]= location;}
+							  leap[2] = leap[1];
+							  leap[1] = new PVector(leapvars.leapX,leapvars.leapY);
 							  
 							  PVector dir = new PVector();
-							  dir = PVector.sub(mouse[0], mouse[1]);
+							  dir = PVector.sub(leap[0], leap[1]);
 							  acceleration.add(dir);
 							  speed = acceleration;  
 							}
@@ -443,9 +436,3 @@
 
 							}	
 		
-		
-		</script>
-	
-		</body>
-
-</html>
