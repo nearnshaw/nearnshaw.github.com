@@ -4,26 +4,92 @@
 	<head>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<script src="processing/processing.js"></script>
+	
+		<style>
+	#rules
+	{
+		border: 5px solid #615521;
+		border-radius: 15px;
+		background: #E6E8CC;
+		position:absolute;
+		z-index: -1;
+		margin-right:20px;
+		margin-top:20px;
+		padding:10px;
+	}
+
+	#cont
+	{
+		width:100%;
+
+	}
+	#mycanvas
+	{
+	    margin-top: 10px;
+	    margin-left: auto;
+    	margin-right: auto;
+    	display: block;
+    	border:3px grey solid
+	}
+
+	#clarific
+	{
+		border: 3px solid #5195F5;
+		border-radius: 25px;
+		background: #DAE5F5;
+		position:absolute;
+		z-index: -1;
+		margin-right:20px;
+		margin-top:300px;
+		padding:10px;
+
+	}
+
+
+
+	#signature
+	{
+		float:right;
+	}
+
+	#signature p
+	{
+		color:#A6A6A6;
+		font-size: small;
+	}
+
+
+		</style>
+
+
 	</head>
 		
 	<body>
-		<canvas id="mycanvas" style="border:1px black solid"></canvas>
+		
 		<br>
 				
-		<div class="span4">	
-			<h3>
+		<div id="rules" class="span4">	
+			<h3>The Rules are Simple:</h3>
+			<h4>
 			<ul>
-			<li>Avoid the Red balls</li> 
+			<li>Avoid Red balls</li> 
 			<li>Avoid black holes</li>
-			<li>Push the yellow balls into the holes </li>
-			<li>Look for green ones!</li>
-			</h3>
+			<li>Push yellow balls into holes </li>
+			<li>Green balls give you a power you can unleash by left-clicking</li>
+			</h4>
 			</ul>
-		<div>
-		
-		<div class="hero">
-	<h2><a href="redballs-leap.html"> Have a Leap Motion Controller? Try out the Leap-enabled version! </a></h2>
 		</div>
+		<div id="clarific" class="span4">
+			<h5>This game is available to play with a <a href="http://www.leapmotion.com" target="_blank">Leap Motion Controller</a></h5>
+			<h5>Have one? Try out the <a href="/redballs-leap.html">Leap version!</a> </h5>
+			<br>
+			<div id="signature">
+				<p>Game by: <a href="http://nearnshaw.github.com" target="blank">Nicolas Earnshaw</a></p>
+			</div>
+
+		</div>
+		<canvas id="mycanvas" style="border:1px black solid"></canvas>
+	
 	 
 	<script type="text/processing" data-processing-target="mycanvas">
 							int life = 50;
@@ -387,7 +453,7 @@
 							}
 							  void move()
 							{
-							  if(mousePressed && abs(mouseX -location.x)<7 && abs(mouseY - location.y)<7)
+							  if( abs(mouseX -location.x)<7 && abs(mouseY - location.y)<7)
 							  {
 							  PVector[] mouse = new PVector[3] ;
 							  if(mouse[0] == null){mouse[0]= location;}

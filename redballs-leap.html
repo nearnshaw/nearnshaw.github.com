@@ -6,6 +6,64 @@
 	<head>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<script src="processing/processing.js"></script>
+	
+	<style>
+
+	#rules
+	{
+		border: 5px solid #615521;
+		border-radius: 15px;
+		background: #E6E8CC;
+		position:absolute;
+		z-index: -1;
+		margin-right:20px;
+		margin-top:20px;
+		padding:10px;
+	}
+
+	#cont
+	{
+		width:100%;
+
+	}
+	#mycanvas
+	{
+	    margin-top: 10px;
+	    margin-left: auto;
+    	margin-right: auto;
+    	display: block;
+    	border:3px grey solid
+	}
+
+	#clarific
+	{
+		border: 3px solid #5195F5;
+		border-radius: 25px;
+		background: #DAE5F5;
+		position:absolute;
+		z-index: -1;
+		margin-right:20px;
+		margin-top:300px;
+		padding:10px;
+
+	}
+
+
+
+	#signature
+	{
+		float:right;
+	}
+
+	#signature p
+	{
+		color:#A6A6A6;
+		font-size: small;
+	}
+
+	</style>
+
+
 	</head>
 		
 	<body>
@@ -13,21 +71,36 @@
 	 var leapvars =
 	 {
 	 	leapX: 50,
-	 	leapY: 50
+	 	leapY: 50,
+	 	leapZ:100,
+	 	salv: false
 	 };
 	 </script>
-		<canvas id="mycanvas" style="border:1px black solid"></canvas>
-		<br>			
-		<div class="span4">	
-			<h3>
+
+		
+		<div id="rules" class="span4">	
+			<h3>The Rules are Simple:</h3>
+			<h4>
 			<ul>
-			<li>Avoid the Red balls</li> 
+			<li>Avoid Red balls</li> 
 			<li>Avoid black holes</li>
-			<li>Push the yellow balls into the holes </li>
-			<li>Look for green ones!</li>
-			</h3>
+			<li>Push yellow balls into holes </li>
+			<li>Green balls give you a power you can unleash by clicking the mouse</li>
+			</h4>
 			</ul>
-		<div>
+		</div>
+		<div id="clarific" class="span4">
+			<h5>This game is available to play with a <a href="http://www.leapmotion.com" target="_blank">Leap Motion Controller</a><br>
+			Check out the <a href="/redballs-leap.html">Leap Version</a> </h5>
+			<br>
+			<div id="signature">
+				<p>Game by: <a href="http://nearnshaw.github.com" target="blank">Nicolas Earnshaw</a></p>
+			</div>
+
+		</div>
+		<div id="cont">
+			<canvas id="mycanvas" ></canvas>
+		</div>
 	
 
 
@@ -159,9 +232,14 @@
 							void drawMe()
 							{
 							 stroke(0);
-							 fill(230,230,255);
+							 int bl = map(leapvars.leapZ, 1.8, 0.4, 0,255 );
+							 int op = map(leapvars.leapZ, 1.8, 0.4, 30,100 );
+							 int tam = map(leapvars.leapZ, 1.8, 0.4, 7,11 );
+							 //(bl);
+
+							 fill(83,92,bl,op);
 							 noStroke();
-							ellipse(leapvars.leapX,leapvars.leapY,10,10);
+							ellipse(leapvars.leapX,leapvars.leapY,tam,tam);
 							}
 								
 
@@ -306,7 +384,7 @@
 							 PVector dir = PVector.sub(leap, location);
 							 dir.mult(0.0015);
 							 acceleration = dir;
-							 if ((mousePressed)&& flee ==1 && power > 0)  {acceleration.mult(-1); power-=1;}
+							 if ((leapvars.salv == true)&& flee ==1 && power > 0)  {acceleration.mult(-1); power-=0.3;}
 							   
 							  speed.add(acceleration);
 							  speed.limit(speedmax);
@@ -371,7 +449,7 @@
 							  sx = random(0, 500);
 							  sy = random(0, 500);
 							  time = 500;  
-							}
+							  }
 							  
 							  void display()
 							  {
@@ -415,7 +493,7 @@
 							}
 							  void move()
 							{
-							  if(mousePressed && abs(leapvars.leapX -location.x)<7 && abs(leapvars.leapY - location.y)<7)
+							  if((leapvars.leapZ < 0.4) && abs(leapvars.leapX -location.x)<7 && abs(leapvars.leapY - location.y)<7)
 							  {
 							  PVector[] leap = new PVector[3] ;
 							  if(leap[0] == null){leap[0]= location;}
@@ -496,15 +574,21 @@
 		        var leapPosition = region.mapToXY(
 		        	frame.cursorPosition, 500, 500);
 
-		        leapvars.leapX = leapPosition[0];
-		        leapvars.leapY = leapPosition[1];
+		        leapvars.leapX = ((leapPosition[0]-500)*1.8)+500;
+		        leapvars.leapY = (leapPosition[1])*1.5;
+		        leapvars.leapZ = leapPosition[2];
 		      }
 
 		      if(frame.gestures && frame.gestures.length !== 0) {
 		      	var gesture = frame.gestures[0];
 
 		      	if(gesture.type === 'circle') {
-		      		
+		      		leapvars.salv = true;
+
+		      		setTimeout(function() {
+                		leapvars.salv = false;
+            		}, 2000);
+
 		      	};
 
 			}
